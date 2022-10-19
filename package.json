@@ -1,6 +1,8 @@
 {
-  "name": "time",
+  "name": "@grind-t/time",
   "version": "1.0.0",
+  "author": "grind-t",
+  "description": "time primitives",
   "type": "module",
   "files": [
     "dist"
@@ -15,14 +17,23 @@
     }
   },
   "scripts": {
-    "build": "vite build && tsc --emitDeclarationOnly",
+    "build": "vite build",
     "test": "vitest"
   },
   "devDependencies": {
     "@types/node": "^18.7.16",
-    "jsdom": "^20.0.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
+    "vite-plugin-dts": "^1.6.6",
     "vitest": "^0.23.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grind-t/time.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grind-t/time/issues"
+  },
+  "homepage": "https://github.com/grind-t/time#readme"
 }
