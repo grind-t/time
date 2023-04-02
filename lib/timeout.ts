@@ -38,6 +38,6 @@ export function startTimeout(
 export function stopTimeout(timeout: Timeout): number {
   const deltaTime = Date.now() - timeout.startedAt;
   const remaining = timeout.ms - deltaTime;
-  clearInterval(timeout.id);
+  clearTimeout(timeout.id);
   return Math.max(0, remaining);
 }

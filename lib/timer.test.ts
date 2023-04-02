@@ -3,7 +3,7 @@ import { Timer } from "./timer";
 
 const second = 1000;
 const handler = vi.fn();
-const timer = new Timer(handler, second);
+const timer = new Timer(second, handler);
 
 beforeEach(() => {
   vi.useFakeTimers();
@@ -29,10 +29,10 @@ it("should tick with error", () => {
   expect(handler).toBeCalledTimes(2);
 });
 
-it("should tick after stop", () => {
+it("should tick after pause", () => {
   timer.start();
   vi.advanceTimersByTime(second - 300);
-  timer.stop();
+  timer.pause();
   vi.setSystemTime(10 * second);
   timer.start();
   vi.advanceTimersByTime(300);

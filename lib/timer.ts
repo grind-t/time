@@ -7,32 +7,52 @@ import {
 } from "./timeout";
 
 export class Timer {
-  timeout: Timeout | number;
+  #timeout: Timeout | number;
+  #interval: number;
+  #callback: TimeoutCallback;
 
-  constructor(public callback: TimeoutCallback, public interval: number) {
-    this.timeout = interval;
+  constructor(interval: number, callback: TimeoutCallback) {
+    this.#timeout = interval;
+    this.#interval = interval;
+    this.#callback = callback;
   }
 
-  isRunning() {
-    return typeof this.timeout !== "number";
+  get timeout() {
+    return this.#timeout;
+  }
+
+  get interval() {
+    return this.#interval;
+  }
+
+  get callback() {
+    return this.#callback;
+  }
+
+  get isRunning() {
+    return typeof this.#timeout !== "number";
   }
 
   start() {
-    if (this.isRunning()) return;
+    if (this.isRunning) return;
     const handler = (data: TimeoutData) => {
-      this.callback(data);
-      this.timeout = startTimeout(handler, data.nextTimeout, this.interval);
+      this.#callback(data);
+      this.#timeout = startTimeout(handler, data.nextTimeout, this.#interval);
     };
-    this.timeout = startTimeout(handler, <number>this.timeout, this.interval);
+    this.#timeout = startTimeout(
+      handler,
+      <number>this.#timeout,
+      this.#interval
+    );
   }
 
-  stop() {
-    if (!this.isRunning()) return;
-    this.timeout = stopTimeout(<Timeout>this.timeout);
+  pause() {
+    if (!this.isRunning) return;
+    this.#timeout = stopTimeout(<Timeout>this.#timeout);
   }
 
   reset() {
-    this.stop();
-    this.timeout = this.interval;
+    this.isRunning && stopTimeout(<Timeout>this.#timeout);
+    this.#timeout = this.#interval;
   }
 }
