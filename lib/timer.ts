@@ -8,25 +8,13 @@ import {
 
 export class Timer {
   #timeout: Timeout | number;
-  #interval: number;
-  #callback: TimeoutCallback;
 
-  constructor(interval: number, callback: TimeoutCallback) {
+  constructor(readonly interval: number, readonly callback: TimeoutCallback) {
     this.#timeout = interval;
-    this.#interval = interval;
-    this.#callback = callback;
   }
 
   get timeout() {
     return this.#timeout;
-  }
-
-  get interval() {
-    return this.#interval;
-  }
-
-  get callback() {
-    return this.#callback;
   }
 
   get isRunning() {
@@ -36,14 +24,10 @@ export class Timer {
   start() {
     if (this.isRunning) return;
     const handler = (data: TimeoutData) => {
-      this.#callback(data);
-      this.#timeout = startTimeout(handler, data.nextTimeout, this.#interval);
+      this.callback(data);
+      this.#timeout = startTimeout(handler, data.nextTimeout, this.interval);
     };
-    this.#timeout = startTimeout(
-      handler,
-      <number>this.#timeout,
-      this.#interval
-    );
+    this.#timeout = startTimeout(handler, <number>this.#timeout, this.interval);
   }
 
   pause() {
@@ -53,6 +37,6 @@ export class Timer {
 
   reset() {
     this.isRunning && stopTimeout(<Timeout>this.#timeout);
-    this.#timeout = this.#interval;
+    this.#timeout = this.interval;
   }
 }
