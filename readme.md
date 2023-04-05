@@ -1,8 +1,8 @@
-# Why
+## Why
 `setTimeout` may not work precisely ([docs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)), so this library implements two primitives for working with time taking into account the error margin.
 
-# How
-## Timeout
+## How
+### Timeout
 The `startTimeout` function is used to start a timeout:
 ```js
 const timeout = startTimeout(({
@@ -24,7 +24,7 @@ The `stopTimeout` function is used to stop a timeout:
 // The function returns the remaining time until the timeout completes
 const remainging = stopTimeout(timeout);
 ```
-## Timer
+### Timer
 The `Timer` class is used to create a timer that automatically takes into account the error:
 ```js
 const interval = 1000;
