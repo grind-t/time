@@ -1,6 +1,6 @@
 {
   "name": "@grind-t/time",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "grind-t",
   "description": "time primitives",
   "type": "module",
@@ -21,11 +21,11 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@types/node": "^18.7.16",
-    "typescript": "^4.6.4",
-    "vite": "^3.1.0",
-    "vite-plugin-dts": "^1.6.6",
-    "vitest": "^0.23.2"
+    "@types/node": "^20.3.3",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9",
+    "vite-plugin-dts": "^3.0.2",
+    "vitest": "^0.32.2"
   },
   "repository": {
     "type": "git",
